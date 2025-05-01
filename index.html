@@ -1,5 +1,36 @@
 <html>
+  
+<script>
+// 간단한 눈 내리는 효과 (IE 4에서도 작동)
+var snowMax = 10;
+var snow = [];
+var browserWidth = document.body.clientWidth;
+var browserHeight = document.body.clientHeight;
 
+for (var i = 0; i < snowMax; i++) {
+  var s = document.createElement("div");
+  s.innerHTML = "*";
+  s.style.position = "absolute";
+  s.style.top = Math.random() * browserHeight + "px";
+  s.style.left = Math.random() * browserWidth + "px";
+  s.style.fontSize = "20px";
+  s.style.color = "#FFFFFF";
+  document.body.appendChild(s);
+  snow.push({ el: s, y: parseFloat(s.style.top), x: parseFloat(s.style.left) });
+}
+
+function fall() {
+  for (var i = 0; i < snow.length; i++) {
+    snow[i].y += 2;
+    if (snow[i].y > browserHeight) snow[i].y = 0;
+    snow[i].el.style.top = snow[i].y + "px";
+  }
+  setTimeout(fall, 100);
+}
+
+fall();
+</script>
+  
 <head>
   <title>나의 한주간의 사진!</title>
 <meta http-equiv="Content-Language" content="ko">
