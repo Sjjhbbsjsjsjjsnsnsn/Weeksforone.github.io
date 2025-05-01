@@ -1,41 +1,60 @@
 <html>
   
-<script>
-  var snowMax = 20;
-  var snowflakes = [];
-  var browserWidth = document.body.clientWidth;
-  var browserHeight = document.body.clientHeight;
+<head>
+  
+</head>
+<body bgcolor="black" text="white">
 
-  function createSnowflake() {
-    var snow = document.createElement("span");
-    snow.innerHTML = "*";
-    snow.className = "snowflake";
-    snow.style.left = Math.random() * browserWidth + "px";
-    snow.style.top = Math.random() * browserHeight + "px";
-    document.body.appendChild(snow);
-    snowflakes.push({ el: snow, x: parseFloat(snow.style.left), y: parseFloat(snow.style.top) });
+<script language="JavaScript">
+// 수동으로 눈송이 HTML 요소를 생성하고 움직이기 (IE4 호환)
+var snowmax = 15;
+var snow = new Array();
+var snowsize = 20;
+var sinkspeed = 0.5;
+var snowcolor = "#FFFFFF";
+var snowletter = "*";
+
+var marginbottom;
+var marginright;
+var snowbottom = [];
+var snowleft = [];
+var snowspeed = [];
+
+if (document.all || document.layers) {
+  marginbottom = document.body.clientHeight;
+  marginright = document.body.clientWidth;
+
+  for (i = 0; i < snowmax; i++) {
+    document.write("<span id='s" + i + "' style='position:absolute;z-index:9999;visibility:visible;font-size:" +
+      snowsize + "px;color:" + snowcolor + "'>" + snowletter + "</span>");
   }
 
-  for (var i = 0; i < snowMax; i++) {
-    createSnowflake();
+  for (i = 0; i < snowmax; i++) {
+    snow[i] = document.all ? document.all["s" + i] : document.layers["s" + i];
+    snowbottom[i] = Math.random() * marginbottom;
+    snowleft[i] = Math.random() * marginright;
+    snowspeed[i] = sinkspeed + Math.random();
   }
 
-  function moveSnow() {
-    for (var i = 0; i < snowflakes.length; i++) {
-      var flake = snowflakes[i];
-      flake.y += 1 + Math.random(); // 아래로 떨어지기
-      if (flake.y > browserHeight) {
-        flake.y = 0;
-        flake.x = Math.random() * browserWidth;
+  function movesnow() {
+    for (i = 0; i < snowmax; i++) {
+      snowbottom[i] += snowspeed[i];
+      if (snowbottom[i] > marginbottom - 20) {
+        snowbottom[i] = 0;
+        snowleft[i] = Math.random() * marginright;
       }
-      flake.el.style.top = flake.y + "px";
-      flake.el.style.left = flake.x + "px";
+
+      snow[i].style.top = snowbottom[i];
+      snow[i].style.left = snowleft[i];
     }
-    setTimeout(moveSnow, 50); // 약 20프레임/초
+    setTimeout("movesnow()", 50);
   }
 
-  moveSnow();
+  movesnow();
+}
 </script>
+
+</body>
 
 </body>
 </html>
