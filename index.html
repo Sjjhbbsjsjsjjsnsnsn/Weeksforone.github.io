@@ -1,35 +1,44 @@
 <html>
   
 <script>
-// 간단한 눈 내리는 효과 (IE 4에서도 작동)
-var snowMax = 10;
-var snow = [];
-var browserWidth = document.body.clientWidth;
-var browserHeight = document.body.clientHeight;
+  var snowMax = 20;
+  var snowflakes = [];
+  var browserWidth = document.body.clientWidth;
+  var browserHeight = document.body.clientHeight;
 
-for (var i = 0; i < snowMax; i++) {
-  var s = document.createElement("div");
-  s.innerHTML = "*";
-  s.style.position = "absolute";
-  s.style.top = Math.random() * browserHeight + "px";
-  s.style.left = Math.random() * browserWidth + "px";
-  s.style.fontSize = "20px";
-  s.style.color = "#FFFFFF";
-  document.body.appendChild(s);
-  snow.push({ el: s, y: parseFloat(s.style.top), x: parseFloat(s.style.left) });
-}
-
-function fall() {
-  for (var i = 0; i < snow.length; i++) {
-    snow[i].y += 2;
-    if (snow[i].y > browserHeight) snow[i].y = 0;
-    snow[i].el.style.top = snow[i].y + "px";
+  function createSnowflake() {
+    var snow = document.createElement("span");
+    snow.innerHTML = "*";
+    snow.className = "snowflake";
+    snow.style.left = Math.random() * browserWidth + "px";
+    snow.style.top = Math.random() * browserHeight + "px";
+    document.body.appendChild(snow);
+    snowflakes.push({ el: snow, x: parseFloat(snow.style.left), y: parseFloat(snow.style.top) });
   }
-  setTimeout(fall, 100);
-}
 
-fall();
+  for (var i = 0; i < snowMax; i++) {
+    createSnowflake();
+  }
+
+  function moveSnow() {
+    for (var i = 0; i < snowflakes.length; i++) {
+      var flake = snowflakes[i];
+      flake.y += 1 + Math.random(); // 아래로 떨어지기
+      if (flake.y > browserHeight) {
+        flake.y = 0;
+        flake.x = Math.random() * browserWidth;
+      }
+      flake.el.style.top = flake.y + "px";
+      flake.el.style.left = flake.x + "px";
+    }
+    setTimeout(moveSnow, 50); // 약 20프레임/초
+  }
+
+  moveSnow();
 </script>
+
+</body>
+</html>
   
 <head>
   <title>나의 한주간의 사진!</title>
