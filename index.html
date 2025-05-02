@@ -1,5 +1,18 @@
 <html>
-
+  <script>
+document.onmousemove = function(e) {
+  var dot = document.createElement("div");
+  dot.style.position = "absolute";
+  dot.style.width = dot.style.height = "5px";
+  dot.style.backgroundColor = "red";
+  dot.style.borderRadius = "50%";
+  dot.style.left = (e.clientX - 2) + "px";
+  dot.style.top = (e.clientY - 2) + "px";
+  document.body.appendChild(dot);
+  setTimeout(function() { document.body.removeChild(dot); }, 300);
+};
+</script>
+  
   <script language="JavaScript">
 // 수동으로 눈송이 HTML 요소를 생성하고 움직이기 (IE4 호환)
 var snowmax = 15;
