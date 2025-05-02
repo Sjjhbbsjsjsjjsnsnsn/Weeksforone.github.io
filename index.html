@@ -1,5 +1,54 @@
 <html>
 
+  <script language="JavaScript">
+// 수동으로 눈송이 HTML 요소를 생성하고 움직이기 (IE4 호환)
+var snowmax = 15;
+var snow = new Array();
+var snowsize = 20;
+var sinkspeed = 0.5;
+var snowcolor = "#FFFFFF";
+var snowletter = "*";
+
+var marginbottom;
+var marginright;
+var snowbottom = [];
+var snowleft = [];
+var snowspeed = [];
+
+if (document.all || document.layers) {
+  marginbottom = document.body.clientHeight;
+  marginright = document.body.clientWidth;
+
+  for (i = 0; i < snowmax; i++) {
+    document.write("<span id='s" + i + "' style='position:absolute;z-index:9999;visibility:visible;font-size:" +
+      snowsize + "px;color:" + snowcolor + "'>" + snowletter + "</span>");
+  }
+
+  for (i = 0; i < snowmax; i++) {
+    snow[i] = document.all ? document.all["s" + i] : document.layers["s" + i];
+    snowbottom[i] = Math.random() * marginbottom;
+    snowleft[i] = Math.random() * marginright;
+    snowspeed[i] = sinkspeed + Math.random();
+  }
+
+  function movesnow() {
+    for (i = 0; i < snowmax; i++) {
+      snowbottom[i] += snowspeed[i];
+      if (snowbottom[i] > marginbottom - 20) {
+        snowbottom[i] = 0;
+        snowleft[i] = Math.random() * marginright;
+      }
+
+      snow[i].style.top = snowbottom[i];
+      snow[i].style.left = snowleft[i];
+    }
+    setTimeout("movesnow()", 50);
+  }
+
+  movesnow();
+}
+</script>
+
 <head>
 <meta http-equiv="Content-Language" content="ko">
 <meta http-equiv="Content-Type" content="text/html; charset=ks_c_5601-1987">
