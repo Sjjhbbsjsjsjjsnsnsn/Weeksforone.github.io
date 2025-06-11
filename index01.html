@@ -18,62 +18,63 @@ if(visits == 1) {
 }
 </script>
   
-</head>
-<body bgcolor="cyan" text="black">
+<!-- 🍁 단풍 효과 시작 -->
+<div id="falling-leaves-container"></div>
 
-<script language="JavaScript">
-// 수동으로 눈송이 HTML 요소를 생성하고 움직이기 (IE4 호환)
-var snowmax = 15;
-var snow = new Array();
-var snowsize = 20;
-var sinkspeed = 0.5;
-var snowcolor = "#FFFFFF";
-var snowletter = "*";
-
-var marginbottom;
-var marginright;
-var snowbottom = [];
-var snowleft = [];
-var snowspeed = [];
-
-if (document.all || document.layers) {
-  marginbottom = document.body.clientHeight;
-  marginright = document.body.clientWidth;
-
-  for (i = 0; i < snowmax; i++) {
-    document.write("<span id='s" + i + "' style='position:absolute;z-index:9999;visibility:visible;font-size:" +
-      snowsize + "px;color:" + snowcolor + "'>" + snowletter + "</span>");
-  }
-
-  for (i = 0; i < snowmax; i++) {
-    snow[i] = document.all ? document.all["s" + i] : document.layers["s" + i];
-    snowbottom[i] = Math.random() * marginbottom;
-    snowleft[i] = Math.random() * marginright;
-    snowspeed[i] = sinkspeed + Math.random();
-  }
-
-  function movesnow() {
-    for (i = 0; i < snowmax; i++) {
-      snowbottom[i] += snowspeed[i];
-      if (snowbottom[i] > marginbottom - 20) {
-        snowbottom[i] = 0;
-        snowleft[i] = Math.random() * marginright;
-      }
-
-      snow[i].style.top = snowbottom[i];
-      snow[i].style.left = snowleft[i];
+<style type="text/css">
+    #falling-leaves-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none; /* 마우스 이벤트 방해 방지 */
+        z-index: 9999;
     }
-    setTimeout("movesnow()", 50);
-  }
+    .falling-leaf {
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        top: -50px;
+    }
+</style>
 
-  movesnow();
-}
+<script type="text/javascript">
+(function() {
+    var leafCount = 6; // 🍂 단풍잎 개수 조절
+    var container = document.getElementById('falling-leaves-container');
+    var leaves = [];
+
+    for (var i = 0; i < leafCount; i++) {
+        var leaf = document.createElement('img');
+        leaf.className = 'falling-leaf';
+        leaf.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABYklEQVRYR+3XvUoDQRSG4fdfBL+wUAvcQzYq8gBdgFwAFcQC3EDuAC+wUFkBcAkDkPxgXWb6cLMzLM+efOZTMiAkSfokXcqQuE6KqCeFCXIm3uEAvVsyZpG+TGFZJP2FwUQo7zj4/3oDYdEt7Jj6bYFJ9AVxhj+8AaJZzH8DUO4BOYH9MyBFYzPc9YYUAvVx+Ib+Gk5dL0LFCYBnO4BxpsWwYd+AN5Zn+BId9J8gBhPIz0Y+JrN9d3AkGcbsyKqFqD7eq4ANhFyM4OxzFKOUY2+EZ8A7gC/gA5+pF9ZfrdAuhgmIuv1Lglmo2onAQtiqsIN5OjIs1HOQCEeCv6MOK0rNs8kIUAAAAASUVORK5CYII=';
+        leaf.style.left = Math.floor(Math.random() * document.body.clientWidth) + 'px';
+        leaf.y = Math.random() * -100;
+        leaf.speed = 1 + Math.random() * 1.5;
+        container.appendChild(leaf);
+        leaves.push(leaf);
+    }
+
+    function fall() {
+        for (var i = 0; i < leaves.length; i++) {
+            var leaf = leaves[i];
+            leaf.y += leaf.speed;
+            if (leaf.y > document.body.clientHeight) {
+                leaf.y = -50;
+                leaf.style.left = Math.floor(Math.random() * document.body.clientWidth) + 'px';
+            }
+            leaf.style.top = leaf.y + 'px';
+        }
+        setTimeout(fall, 30);
+    }
+
+    fall();
+})();
 </script>
+<!-- 🍁 단풍 효과 끝 -->
 
-</body>
-
-</body>
-</html>
   
 <head>
   <title>나의 한주간의 사진!</title>
