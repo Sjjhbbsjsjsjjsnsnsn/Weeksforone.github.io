@@ -18,62 +18,81 @@ if(visits == 1) {
 }
 </script>
   
-<!-- 🍁 단풍 효과 시작 -->
-<div id="falling-leaves-container"></div>
+<!-- 🍁 단풍잎 효과 시작 -->
+<style>
+  body {
+    margin: 0;
+    overflow-x: hidden;
+  }
 
-<style type="text/css">
-    #falling-leaves-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        pointer-events: none; /* 마우스 이벤트 방해 방지 */
-        z-index: 9999;
+  .leaf {
+    position: absolute;
+    font-size: 24px;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  @keyframes fall {
+    0% {
+      transform: translateY(0px) rotate(0deg);
+      opacity: 1;
     }
-    .falling-leaf {
-        position: absolute;
-        width: 32px;
-        height: 32px;
-        top: -50px;
+    100% {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0;
     }
+  }
 </style>
 
-<script type="text/javascript">
+<script>
 (function() {
-    var leafCount = 6; // 🍂 단풍잎 개수 조절
-    var container = document.getElementById('falling-leaves-container');
-    var leaves = [];
+  var isOldIE = (document.all && !window.addEventListener);
 
-    for (var i = 0; i < leafCount; i++) {
-        var leaf = document.createElement('img');
-        leaf.className = 'falling-leaf';
-        leaf.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABYklEQVRYR+3XvUoDQRSG4fdfBL+wUAvcQzYq8gBdgFwAFcQC3EDuAC+wUFkBcAkDkPxgXWb6cLMzLM+efOZTMiAkSfokXcqQuE6KqCeFCXIm3uEAvVsyZpG+TGFZJP2FwUQo7zj4/3oDYdEt7Jj6bYFJ9AVxhj+8AaJZzH8DUO4BOYH9MyBFYzPc9YYUAvVx+Ib+Gk5dL0LFCYBnO4BxpsWwYd+AN5Zn+BId9J8gBhPIz0Y+JrN9d3AkGcbsyKqFqD7eq4ANhFyM4OxzFKOUY2+EZ8A7gC/gA5+pF9ZfrdAuhgmIuv1Lglmo2onAQtiqsIN5OjIs1HOQCEeCv6MOK0rNs8kIUAAAAASUVORK5CYII=';
-        leaf.style.left = Math.floor(Math.random() * document.body.clientWidth) + 'px';
-        leaf.y = Math.random() * -100;
-        leaf.speed = 1 + Math.random() * 1.5;
-        container.appendChild(leaf);
-        leaves.push(leaf);
+  if (isOldIE) {
+    // ✅ IE 5.5 방식: 수동 위치 이동
+    var leaf = document.createElement("span");
+    leaf.className = "leaf";
+    leaf.innerHTML = "<img src='leaf.gif' width='24'>";
+
+    leaf.style.left = "100px";
+    leaf.style.top = "0px";
+    document.body.appendChild(leaf);
+
+    var topPos = 0;
+    var leftPos = 100;
+
+    setInterval(function() {
+      topPos += 4;
+      leftPos += Math.random() * 4 - 2;
+      if (topPos > document.body.clientHeight) {
+        topPos = 0;
+        leftPos = Math.random() * (document.body.clientWidth - 20);
+      }
+      leaf.style.top = topPos + "px";
+      leaf.style.left = leftPos + "px";
+    }, 80);
+
+  } else {
+    // ✅ 최신 브라우저용: CSS 애니메이션
+    function createLeaf() {
+      var leaf = document.createElement("div");
+      leaf.className = "leaf";
+      leaf.textContent = "🍁";
+      leaf.style.left = Math.random() * window.innerWidth + "px";
+      leaf.style.animation = "fall " + (3 + Math.random() * 3) + "s linear";
+      leaf.style.fontSize = (16 + Math.random() * 16) + "px";
+      document.body.appendChild(leaf);
+
+      setTimeout(function() {
+        document.body.removeChild(leaf);
+      }, 8000);
     }
 
-    function fall() {
-        for (var i = 0; i < leaves.length; i++) {
-            var leaf = leaves[i];
-            leaf.y += leaf.speed;
-            if (leaf.y > document.body.clientHeight) {
-                leaf.y = -50;
-                leaf.style.left = Math.floor(Math.random() * document.body.clientWidth) + 'px';
-            }
-            leaf.style.top = leaf.y + 'px';
-        }
-        setTimeout(fall, 30);
-    }
-
-    fall();
+    setInterval(createLeaf, 300);
+  }
 })();
 </script>
-<!-- 🍁 단풍 효과 끝 -->
+<!-- 🍁 단풍잎 효과 끝 -->
 
   
 <head>
