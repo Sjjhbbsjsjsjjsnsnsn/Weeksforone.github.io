@@ -84,11 +84,7 @@ if(visits == 1) {
     leaf.innerHTML = "<img src='leaf.gif' width='32' height='32'>";
     document.body.appendChild(leaf);
 
-    setTimeout(function() {
-    document.body.removeChild(leaf);
-    currentLeaves.splice(currentLeaves.indexOf(leaf), 1);
-  }, 8000);
-}
+    
     var topPos = 0;
     var leftPos = parseInt(leaf.style.left);
     var drift = Math.random() * 2 - 1;
