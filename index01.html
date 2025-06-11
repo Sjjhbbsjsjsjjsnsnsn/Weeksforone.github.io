@@ -69,51 +69,42 @@ if(visits == 1) {
 
 <script>
 (function() {
-  var isOldIE = (document.all && !window.addEventListener);
+  var isIE55 = (document.all && !document.getElementById);
 
-  if (isOldIE) {
-    // IE 5.5 방식
-    var leaf = document.createElement("div");
-    leaf.className = "leaf";
-    leaf.innerHTML = "<img src='leaf.gif' width='32' height='32'>";
-    leaf.style.left = "100px";
+  function getWidth() {
+    return document.body.clientWidth || 800;
+  }
+
+  function createLeaf() {
+    var leaf = document.createElement("span");
+    leaf.style.position = "absolute";
     leaf.style.top = "0px";
+    leaf.style.left = Math.floor(Math.random() * getWidth()) + "px";
+    leaf.innerHTML = "<img src='leaf.gif' width='32' height='32'>";
     document.body.appendChild(leaf);
 
     var topPos = 0;
-    var leftPos = 100;
+    var leftPos = parseInt(leaf.style.left);
+    var drift = Math.random() * 2 - 1;
 
     setInterval(function() {
-      topPos += 4;
-      leftPos += Math.random() * 4 - 2;
-      if (topPos > document.body.clientHeight) {
-        topPos = -32;
-        leftPos = Math.random() * (document.body.clientWidth - 32);
-      }
+      topPos += 3;
+      leftPos += drift;
       leaf.style.top = topPos + "px";
       leaf.style.left = leftPos + "px";
-    }, 80);
 
-  } else {
-    // 최신 브라우저용
-    function createLeaf() {
-      var leaf = document.createElement("div");
-      leaf.className = "leaf";
-      leaf.style.left = Math.random() * window.innerWidth + "px";
-      leaf.style.top = "-32px";  // 시작 위치 상단
-      leaf.style.animation = "fall " + (3 + Math.random() * 3) + "s linear";
-      leaf.innerHTML = "<img src='leaf.gif' width='32' height='32'>";
-      document.body.appendChild(leaf);
-
-      setTimeout(function() {
-        document.body.removeChild(leaf);
-      }, 8000);
-    }
-
-    setInterval(createLeaf, 300);
+      if (topPos > document.body.clientHeight) {
+        leaf.style.top = "0px";
+        leaf.style.left = Math.floor(Math.random() * getWidth()) + "px";
+        topPos = 0;
+      }
+    }, 100);
   }
+
+  setInterval(createLeaf, 800);
 })();
 </script>
+
 
 
   
