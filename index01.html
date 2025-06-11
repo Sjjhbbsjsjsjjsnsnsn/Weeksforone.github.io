@@ -17,24 +17,18 @@ if(visits == 1) {
   alert("제 블로그에 다시 오셨군요! " + visits + " 번째 방문입니다. 보통 한번오고 말던데...");
 }
 </script>
-  
-<!-- 🍁 단풍잎 효과 시작 -->
-<style>
-  body {
-    margin: 0;
-    overflow-x: hidden;
-  }
-
+  <style>
   .leaf {
     position: absolute;
-    font-size: 24px;
     pointer-events: none;
     z-index: 9999;
+    width: 32px;
+    height: 32px;
   }
 
   @keyframes fall {
     0% {
-      transform: translateY(0px) rotate(0deg);
+      transform: translateY(-40px) rotate(0deg);
       opacity: 1;
     }
     100% {
@@ -49,11 +43,10 @@ if(visits == 1) {
   var isOldIE = (document.all && !window.addEventListener);
 
   if (isOldIE) {
-    // ✅ IE 5.5 방식: 수동 위치 이동
-    var leaf = document.createElement("span");
+    // IE 5.5 방식
+    var leaf = document.createElement("div");
     leaf.className = "leaf";
-    leaf.innerHTML = "<img src='leaf.gif' width='24'>";
-
+    leaf.innerHTML = "<img src='leaf.gif' width='32' height='32'>";
     leaf.style.left = "100px";
     leaf.style.top = "0px";
     document.body.appendChild(leaf);
@@ -65,22 +58,22 @@ if(visits == 1) {
       topPos += 4;
       leftPos += Math.random() * 4 - 2;
       if (topPos > document.body.clientHeight) {
-        topPos = 0;
-        leftPos = Math.random() * (document.body.clientWidth - 20);
+        topPos = -32;
+        leftPos = Math.random() * (document.body.clientWidth - 32);
       }
       leaf.style.top = topPos + "px";
       leaf.style.left = leftPos + "px";
     }, 80);
 
   } else {
-    // ✅ 최신 브라우저용: CSS 애니메이션
+    // 최신 브라우저용
     function createLeaf() {
       var leaf = document.createElement("div");
       leaf.className = "leaf";
-      leaf.textContent = "🍁";
       leaf.style.left = Math.random() * window.innerWidth + "px";
+      leaf.style.top = "-32px";  // 시작 위치 상단
       leaf.style.animation = "fall " + (3 + Math.random() * 3) + "s linear";
-      leaf.style.fontSize = (16 + Math.random() * 16) + "px";
+      leaf.innerHTML = "<img src='leaf.gif' width='32' height='32'>";
       document.body.appendChild(leaf);
 
       setTimeout(function() {
@@ -92,7 +85,7 @@ if(visits == 1) {
   }
 })();
 </script>
-<!-- 🍁 단풍잎 효과 끝 -->
+
 
   
 <head>
