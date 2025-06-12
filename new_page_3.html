@@ -1,4 +1,51 @@
 ﻿<html>
+<script>
+(function() {
+  var count = 15; // 별 개수
+  var stars = [];
+
+  function makeStar() {
+    var s = document.createElement("div");
+    s.innerHTML = "*"; // 아스키 별 사용
+    s.style.position = "absolute";
+    s.style.color = "#f9c"; // 연분홍빛
+    s.style.fontSize = (12 + Math.random() * 10) + "px";
+    s.style.left = Math.random() * document.body.clientWidth + "px";
+    s.style.top = "-" + Math.random() * 100 + "px";
+    s.style.zIndex = "9999";
+    document.body.appendChild(s);
+    stars.push({
+      el: s,
+      x: parseFloat(s.style.left),
+      y: parseFloat(s.style.top),
+      speed: 1 + Math.random() * 2,
+      drift: (Math.random() - 0.5) * 1
+    });
+  }
+
+  function fall() {
+    for (var i = 0; i < stars.length; i++) {
+      var s = stars[i];
+      s.y += s.speed;
+      s.x += s.drift;
+      s.el.style.top = s.y + "px";
+      s.el.style.left = s.x + "px";
+
+      // 아래로 떨어지면 다시 위로
+      if (s.y > document.body.clientHeight) {
+        s.y = -20;
+        s.x = Math.random() * document.body.clientWidth;
+      }
+    }
+  }
+
+  // 생성
+  for (var i = 0; i < count; i++) makeStar();
+
+  // IE 5도 지원되는 반복 실행
+  setInterval(fall, 50);
+})();
+</script>
 
 <style>
 body {
