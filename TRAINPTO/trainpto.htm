@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="ko">
+<meta http-equiv="Content-Type" content="text/html; charset=ks_c_5601-1987">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>라면가계 철도꾸러미</title>
+<style fprolloverstyle>A:hover {color: red; font-weight: bold}
+</style>
+
+<style type="text/css">
+    body {
+      background-color: #e0f8ff;
+      overflow: auto;
+    }
+    .petal {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: pink;
+      font-size: 12px;
+      line-height: 12px;
+      color: pink;
+    }
+  </style>
+  <script type="text/javascript">
+    var petals = 20; // 총 벚꽃 수
+    var speed = 50;  // 밀리초 단위 속도
+    var px = new Array(), py = new Array(), sx = new Array(), sy = new Array(), petalsEl = [];
+
+    function initPetals() {
+      for (var i = 0; i < petals; i++) {
+        px[i] = Math.random() * document.body.clientWidth;
+        py[i] = Math.random() * document.body.clientHeight;
+        sx[i] = 1 + Math.random() * 2;
+        sy[i] = 1 + Math.random() * 3;
+
+        var el = document.createElement("div");
+        el.className = "petal";
+        el.style.left = px[i] + "px";
+        el.style.top = py[i] + "px";
+        el.innerHTML = "*"; // 유니코드 대신 별표 사용
+        document.body.appendChild(el);
+        petalsEl[i] = el;
+      }
+      movePetals();
+    }
+
+    function movePetals() {
+      for (var i = 0; i < petals; i++) {
+        py[i] += sy[i];
+        px[i] += Math.sin(py[i] / 20) * sx[i];
+
+        if (py[i] > document.body.clientHeight) {
+          py[i] = -15;
+          px[i] = Math.random() * document.body.clientWidth;
+        }
+
+        petalsEl[i].style.top = py[i] + "px";
+        petalsEl[i].style.left = px[i] + "px";
+      }
+      setTimeout(movePetals, speed);
+    }
+
+    window.onload = initPetals;
+  </script>
+
+</head>
+
+<body background="starblue.gif">
+
+<p><span style="position: absolute; left: 3; top: 17; z-index: -1"><img border="0" src="banner_transparent_final.gif" width="500" height="90">
+</span>
+
+
+</p>         
+
+
+<p>　</p>         
+<p>　</p>
+<p>　</p>
+<p>　</p>
+<p>　</p>
+<p><img border="0" src="aaa1325c-79a0-4f80-8aa5-9196f96fba33.gif" width="587" height="377">
+
+
+</p>    
+    
+<p>
+
+
+<marquee behavior="alternate" bgcolor="#FFFFFF" direction="right" width="600" scrollamount="7">이               
+사이트는 IE 5.5 이상부터 재대로 지원합니다. (800x600 권장)</marquee>              
+</p>     
+     
+<div style="width:640px; border:3px groove #999; background:#f9f9f9; padding:10px; margin:20px 0; text-align:left;">     
+  <div style="font-size:14px; font-weight:bold; color:#003366; font-family:'Gungsuh' , 'batang'; margin-bottom:8px;">     
+    <b><font face="궁서" size="4">    
+    나만의 사진과영상 후레야!</font></b>    
+  </div>    
+     
+ <p><img border="0" src="ktx256.gif" width="508" height="344">   
+   
+ 때깔좋은   
+ 상어 2025.6.20   
+    
+     
+ </div>    
+    
+    
+<p><img border="0" src="linkexchange.gif" width="88" height="31"><img border="0" src="netnow3.gif" width="88" height="31"><img border="0" src="iexplorer.gif" width="88" height="31"><img border="0" src="rsac.gif" width="96" height="31"><img border="0" src="win95.gif" width="143" height="36"></p>
+<p><img border="0" src="winzip.gif" width="88" height="31"><img border="0" src="linkexchange.gif" width="88" height="31"><img border="0" src="gc_icon.gif" width="88" height="31"><img border="0" src="netmeeting.gif" width="88" height="31"><img border="0" src="w3c.gif" width="88" height="31"><img border="0" src="rfc1876-now.gif" width="80" height="32"><img border="0" src="frontpg.gif" width="88" height="31"></p>
+<p>　</p>
+<p>　</p>
+<p>　</p>
+<p><img border="0" src="mailbox.gif" width="38" height="38"> <b><span style="background-color: #FFFFFF"><font face="Times New Roman" size="6" color="#000000"><a href="mailto:tppoints0@gmail.com">tppoints0@gmail.com</a> 
+[</font><font size="6" color="#000000">구글메일</font><font face="Times New Roman" size="6" color="#000000">]</font></span></b></p>
+<p><img border="0" src="cherry.gif" width="1600" height="100"></p>
+<p>　</p>
+   
+   
+</body>   
+   
+</html>   
