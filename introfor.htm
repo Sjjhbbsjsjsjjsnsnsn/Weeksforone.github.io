@@ -17,7 +17,57 @@
 <body background="tile_for.gif" bgcolor="#C0C0C0" text="#000000" link="#336699" vlink="#990000" alink="#006600">
 <p align="left"><b><font face="Algerian" color="FFCA0A" size="7">Welcome to my page.</font></b></p>  
 <p align="left"><b><font face="궁서체" color="FFCA0A" size="5">나의 진짜 프로필!</font></b></p>                                 
-<p align="left">라면가계 블로그</p>                                 
+                             
 <p align="left"><u><font face="굴림체" color="FFCA0A" size="5">[제발 윈도우 98/NT 와                                  
 미디어 플레이어 9.0 IE 5.5 이상을 권장합니다.]</font></u></p>                                 
 <div style="position:absolute; top:50px; left:50px;">   
+</div>
+
+  
+</body>
+
+ <script type="text/javascript">
+    var petals = 20; // 총 벚꽃 수
+    var speed = 50;  // 밀리초 단위 속도
+    var px = new Array(), py = new Array(), sx = new Array(), sy = new Array(), petalsEl = [];
+
+    function initPetals() {
+      for (var i = 0; i < petals; i++) {
+        px[i] = Math.random() * document.body.clientWidth;
+        py[i] = Math.random() * document.body.clientHeight;
+        sx[i] = 1 + Math.random() * 2;
+        sy[i] = 1 + Math.random() * 3;
+
+        var el = document.createElement("div");
+        el.className = "petal";
+        el.style.left = px[i] + "px";
+        el.style.top = py[i] + "px";
+        el.innerHTML = "*"; // 유니코드 대신 별표 사용
+        document.body.appendChild(el);
+        petalsEl[i] = el;
+      }
+      movePetals();
+    }
+
+    function movePetals() {
+      for (var i = 0; i < petals; i++) {
+        py[i] += sy[i];
+        px[i] += Math.sin(py[i] / 20) * sx[i];
+
+        if (py[i] > document.body.clientHeight) {
+          py[i] = -15;
+          px[i] = Math.random() * document.body.clientWidth;
+        }
+
+        petalsEl[i].style.top = py[i] + "px";
+        petalsEl[i].style.left = px[i] + "px";
+      }
+      setTimeout(movePetals, speed);
+    }
+
+    window.onload = initPetals;
+  </script>
+
+  
+</body>
+</html>
