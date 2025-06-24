@@ -79,6 +79,31 @@
  <marquee behavior="alternate" bgcolor="#FFFFFF" direction="right" width="640" scrollamount="7"> 그저 고풍그러운 내 프로필. </marquee>    
   </div>
 
+  <style>
+    /* IE5에서 작동하는 최소한의 CSS */
+    #container {
+      width: 640px;
+      height: 480px;
+      border: 1px solid black;
+      overflow: hidden; /* 사진이 넘치면 숨김 */
+      margin: 20px auto; /* 중앙 정렬 */
+      background-color: #f0f0f0;
+      text-align: center; /* 이미지 중앙 정렬 */
+      line-height: 480px; /* 이미지가 수직 가운데 오도록 */
+    }
+    #container img {
+      vertical-align: middle;
+      max-width: 100%;
+      max-height: 100%;
+      line-height: normal;
+    }
+  </style>
+</head>
+<body>
+
+<div id="container">
+  <img src="imgmyfor.jpg" alt="사진 설명">
+</div>
   
 </body>
 
