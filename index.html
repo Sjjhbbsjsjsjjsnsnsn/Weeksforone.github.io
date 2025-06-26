@@ -3,6 +3,20 @@
 
 <html>
 
+<style type="text/css">
+    /* 모든 이미지에 nearest-neighbor 방식으로 확대 적용 */
+    img {
+      /* 표준 */
+      image-rendering: pixelated;
+      /* WebKit 계열 구버전 */
+      image-rendering: -webkit-optimize-contrast;
+      /* Firefox */
+      image-rendering: -moz-crisp-edges;
+      /* IE/Edge 레거시 */
+      -ms-interpolation-mode: nearest-neighbor;
+    }
+  </style>
+  
   <script>
 alert("이 블로그는 Microsoft Internet Explorer 5.5와 6 에 최적화되어 있습니다!");
 </script>
