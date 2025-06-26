@@ -3,7 +3,65 @@
 
 <html>
  
-  
+  <script type="text/javascript">
+  // 설정
+  var pollenCount = 30;      // 꽃가루 개수
+  var pollenSize  = 4;       // 한 변 길이(px)
+  var pollenSpeed = [];      // 각 꽃가루의 속도 보관
+  var pollens     = [];      // 꽃가루 DIV 요소 보관
+
+  // 초기화 함수
+  function initPollen() {
+    var W = document.body.clientWidth;
+    var H = document.body.clientHeight;
+
+    for (var i = 0; i < pollenCount; i++) {
+      // DIV 생성
+      var d = document.createElement('div');
+      d.style.position        = 'absolute';
+      d.style.pixelWidth      = pollenSize;
+      d.style.pixelHeight     = pollenSize;
+      d.style.backgroundColor = 'yellow';
+
+      // 시작 위치
+      d.style.pixelLeft = Math.random() * W;
+      d.style.pixelTop  = -Math.random() * H;
+
+      // 문서에 추가
+      document.body.appendChild(d);
+
+      // 배열에 저장
+      pollens.push(d);
+      pollenSpeed.push(1 + Math.random() * 2);
+    }
+
+    // 애니메이션 시작
+    setInterval(fallPollen, 50);
+  }
+
+  // 낙하 애니메이션
+  function fallPollen() {
+    var W = document.body.clientWidth;
+    var H = document.body.clientHeight;
+
+    for (var i = 0; i < pollens.length; i++) {
+      var d = pollens[i];
+      // 위로 살짝 흔들리며 떨어지기
+      var sway = Math.cos((new Date().valueOf() / 200) + i) * 2;
+      d.style.pixelLeft += sway;
+      d.style.pixelTop  += pollenSpeed[i];
+
+      // 화면 아래로 나가면 위로 리셋
+      if (d.style.pixelTop > H) {
+        d.style.pixelTop  = -pollenSize;
+        d.style.pixelLeft = Math.random() * W;
+      }
+    }
+  }
+
+  // 로드되면 초기화
+  window.onload = initPollen;
+  </script>
   
 <head>
 <meta http-equiv="Content-Language" content="ko">
