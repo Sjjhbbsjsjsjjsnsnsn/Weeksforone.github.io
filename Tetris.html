@@ -1,1 +1,117 @@
+<!DOCTYPE html><html>
+<head>
+  <title>ASCII Tetris</title>
+  <style>
+    pre {
+      font-family: monospace;
+      font-size: 14px;
+      line-height: 1.1;
+    }
+    #game {
+      display: inline-block;
+      border: 1px solid black;
+      padding: 4px;
+      background: #f8f8f8;
+    }
+    .buttonbox {
+      margin-top: 10px;
+    }
+    button {
+      font-family: monospace;
+      font-size: 12px;
+      margin: 2px;
+    }
+  </style>
+  <script type="text/javascript">
+    var board = [];
+    var width = 10, height = 20;
+    var x = 3, y = 0;
+    var interval;
+    var block = [[1, 1]]; // 2칸짜리 블럭function init() {
+  for (var i = 0; i < height; i++) board[i] = "..........";
+  draw();
+  interval = setInterval(drop, 1000);
+}
 
+function draw() {
+  var out = "";
+  for (var i = 0; i < height; i++) {
+    var row = board[i];
+    if (i == y) {
+      var temp = row.substring(0, x) + "[]" + row.substring(x + 2);
+      out += temp + "\n";
+    } else {
+      out += row + "\n";
+    }
+  }
+  document.getElementById("screen").innerText = out;
+}
+
+function move(dx) {
+  if (x + dx >= 0 && x + dx <= width - 2) {
+    x += dx;
+    draw();
+  }
+}
+
+function drop() {
+  if (y + 1 >= height || board[y + 1].charAt(x) != ".") {
+    fixBlock();
+    checkLines();
+    newBlock();
+  } else {
+    y++;
+    draw();
+  }
+}
+
+function fixBlock() {
+  board[y] = board[y].substring(0, x) + "[]" + board[y].substring(x + 2);
+}
+
+function checkLines() {
+  for (var i = 0; i < height; i++) {
+    if (board[i].indexOf(".") == -1) {
+      board.splice(i, 1);
+      board.unshift("..........");
+    }
+  }
+}
+
+function newBlock() {
+  x = 3; y = 0;
+  if (board[y].charAt(x) != ".") {
+    alert("게임 오버!");
+    clearInterval(interval);
+  }
+  draw();
+}
+
+function resetGame() {
+  clearInterval(interval);
+  board = [];
+  init();
+}
+
+document.onkeydown = function(e) {
+  if (!e) e = window.event;
+  var code = e.keyCode;
+  if (code == 37) move(-1);
+  if (code == 39) move(1);
+};
+
+  </script>
+</head>
+<body onload="init()">
+  <h3>ASCII Tetris</h3>
+  <div id="game">
+    <pre id="screen"></pre>
+  </div>
+  <div class="buttonbox">
+    <button onclick="move(-1)">&lt; 왼쪽</button>
+    <button onclick="move(1)">오른쪽 &gt;</button>
+    <button onclick="drop()">▼ 내려</button>
+    <button onclick="resetGame()">↻ 다시시작</button>
+  </div>
+</body>
+</html>
