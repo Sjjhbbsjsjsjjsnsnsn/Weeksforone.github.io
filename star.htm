@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <title>별과설산</title>
+<meta http-equiv="Content-Language" content="ko">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+</head>
+
+<body bgcolor="#000000" text="#000000" link="#336699" vlink="#990000" alink="#006600">
+
+ <div style="text-align: left;">
+<div style="width:660px; border:3px groove #999; background:#f9f9f9; padding:10px; margin:20px auto; text-align:center; position: relative; overflow: hidden;">
+<style>
+  .leaf {
+    position: absolute;
+    pointer-events: none;
+    z-index: 340;
+    width: 16px;
+    height: 16px;
+  }
+
+  @keyframes fall {
+    0% {
+      transform: translateY(-40px) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+(function() {
+  var isIE55 = (document.all && !document.getElementById);
+
+  var maxLeaves = 25;
+  function getWidth() {
+    return document.body.clientWidth || 200;
+  }
+
+  function createLeaf() {
+  var leaf = document.createElement("span");
+  leaf.style.position = "absolute";
+  leaf.style.top = "0px";
+  leaf.style.left = Math.floor(Math.random() * getWidth()) + "px";
+  
+  var img = document.createElement("img");
+  img.src = "starfall.gif";
+  img.width = 16;
+  img.height = 16;
+  
+  leaf.appendChild(img);
+  document.body.appendChild(leaf);
+
+    
+    var topPos = 0;
+    var leftPos = parseInt(leaf.style.left);
+    var drift = Math.random() * 2 - 5;
+
+    setInterval(function() {
+      topPos += 3;
+      leftPos += drift;
+      leaf.style.top = topPos + "px";
+      leaf.style.left = leftPos + "px";
+
+      if (topPos > document.body.clientHeight) {
+        leaf.style.top = "0px";
+        leaf.style.left = Math.floor(Math.random() * getWidth()) + "px";
+        topPos = 0;
+      }
+    }, 100);
+  }
+
+  setInterval(createLeaf, 3200);
+})();
+</script>
+
+
+<!-- 나는 행복합니다 -->
+
+
+<img src="STARBK8B.gif" width="640" height="480" alt="달">
+<p align="center"><font color="black" face="궁서" size="5"><b>설산 그리고 별.</b></font></p>
+</div>
+</div>
+</html>
