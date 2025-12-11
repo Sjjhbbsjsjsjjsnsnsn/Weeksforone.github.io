@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Maybe...? My internet site is comply W3C HTML 4.01 ...? -->
+<html>
+
+<head>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.persimmon-footer {
+  width: 100%;
+  height: 342px; /* 감나무 이미지 높이 */
+  background: url('wood.gif') repeat-x bottom;
+  background-repeat: repeat-x;
+  background-position: bottom;
+}
+</style>
+ 
+
+<script type="text/javascript">
+    var pollenCount = 30,
+        pollenSize  = 4,
+        pollens     = [],
+        speeds      = [];
+
+    function initPollen() {
+      var W = window.innerWidth,
+          H = window.innerHeight;
+
+      for (var i = 0; i < pollenCount; i++) {
+        var d = document.createElement('div');
+        d.style.position        = 'absolute';
+        d.style.width           = pollenSize + 'px';
+        d.style.height          = pollenSize + 'px';
+        d.style.backgroundColor = 'white';
+
+        // 시작 위치
+        d.style.left = Math.random() * W + 'px';
+        d.style.top  = -Math.random() * H + 'px';
+
+        document.body.appendChild(d);
+        pollens.push(d);
+        speeds.push(1 + Math.random() * 2);
+      }
+
+      setInterval(fallPollen, 50);
+    }
+
+    function fallPollen() {
+      var W = window.innerWidth,
+          H = window.innerHeight,
+          t = Date.now() / 200;
+
+      for (var i = 0; i < pollens.length; i++) {
+        var d = pollens[i],
+            x = parseFloat(d.style.left),
+            y = parseFloat(d.style.top),
+            sway = Math.cos(t + i) * 2;
+
+        x += sway;
+        y += speeds[i];
+
+        if (y > H) {
+          y = -pollenSize;
+          x = Math.random() * W;
+        }
+
+        d.style.left = x + 'px';
+        d.style.top  = y + 'px';
+      }
+    }
+
+    window.onload = initPollen;
+  </script>
+
+<meta http-equiv="Content-Language" content="ko">
+<meta http-equiv="Content-Type" content="text/html; charset=ks_c_5601-1987">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>새 페이지 1</title>
+</head>
+
+<body background="phtoback.gif">
+
+<p align="center"><font face="궁서체" size="6" color="#FFFFFF">사진 자랑방~</font></p> 
+<p align="center"><font face="궁서체" color="#FFFFFF" size="3">(슈의 라면가계  
+블로그 피셜 이 사이트중에서 쓸모가 두번째로있는 곳!)</font></p> 
+<p>　</p>
+
+
+<!-- canon EF -->
+<div style="text-align: left;">
+<div style="width:800px; border:3px groove #999; background:#f9f9f9; padding:10px; margin:20px auto; text-align:left;">
+<div style="font-size:14px; font-weight:bold; color:#003366; font-family:Gungsuh' , 'batang'; margin-bottom:8px;">Canon EF ( 1973 ) 바디로 찍은 사진!</div> 
+ 
+  <p><img border="0" src="EF.gif" width="750" height="500">  
+ <div style="font-size:14px; font-weight:bold; color:#003366; font-family:Gungsuh' , 'batang'; margin-bottom:8px;">Canon EF ( 1973 ) 바디로 처음 찍은 사진입니다. 렌즈가 더러워 잘될까 의문이였지만 잘찍힌듯 합니다.</div> 
+</div> 
+</div> 
+ 
+<!-- Nikon D80 --> 
+<div style="text-align: left;"> 
+<div style="width:800px; border:3px groove #999; background:#f9f9f9; padding:10px; margin:20px auto; text-align:left;"> 
+<div style="font-size:14px; font-weight:bold; color:#003366; font-family:Gungsuh' , 'batang'; margin-bottom:8px;">Nikon D80 ( 2006 ) 바디로 찍은 사진!</div> 
+ 
+ <p><img border="0" src="NK80.gif" width="750" height="500">
+ <div style="font-size:14px; font-weight:bold; color:#003366; font-family:Gungsuh' , 'batang'; margin-bottom:8px;">Nikon D80 ( 2006 ) 바디로 반에서 해바라기 다음으로 새로이 자라나는 당근과 봉숭아 들....</div>
+</div> 
+</div> 
+ 
+
+<!-- 바닥 장식 그외 수풀 둘곳 --> 
+  
+ <div class="persimmon-footer"></div>
+ </body> 
+ 
+</html> 
