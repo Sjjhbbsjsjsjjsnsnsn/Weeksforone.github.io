@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<!-- /* 보통 이런건 다 장식입니다. 이 아래 코드만 봐도 현대식임. */ -->
+
+<html>
+<head>
+<style type="text/css">
+    /* 니 하는 플레이보이 예전에 하는갑지  */
+    img {
+      /* 표준 */
+      image-rendering: pixelated;
+      /* WebKit 계열 구버전 */
+      image-rendering: -webkit-optimize-contrast;
+      /* Firefox */
+      image-rendering: -moz-crisp-edges;
+      /* IE/Edge 레거시 */
+      -ms-interpolation-mode: nearest-neighbor;
+    }
+  </style>
+  
+  <script>
+alert("이 블로그는 Microsoft Internet Explorer 7 에 최적화되어 있습니다!");
+</script>
+
+   <script>
+alert("정상적인 블로그 사용을 위해 인터넷 익스플로워만 사용해 주싶시오.");
+</script>
+
+<script>
+// 7J2067mELOyjvCwg66eI66asIO2VtOyepe2VmeydtCDqtazroZwgNDLsiqQ=
+
+</script>
+
+  
+  <bgsound src="jazz.wav" loop="-1">
+  
+  <script type="text/javascript">
+    var pollenCount = 30,
+        pollenSize  = 4,
+        pollens     = [],
+        speeds      = [];
+
+    function initPollen() {
+      var W = window.innerWidth,
+          H = window.innerHeight;
+
+      for (var i = 0; i < pollenCount; i++) {
+        var d = document.createElement('div');
+        d.style.position        = 'absolute';
+        d.style.width           = pollenSize + 'px';
+        d.style.height          = pollenSize + 'px';
+        d.style.backgroundColor = 'white';
+
+        // 시작 위치
+        d.style.left = Math.random() * W + 'px';
+        d.style.top  = -Math.random() * H + 'px';
+
+        document.body.appendChild(d);
+        pollens.push(d);
+        speeds.push(1 + Math.random() * 2);
+      }
+
+      setInterval(fallPollen, 50);
+    }
+
+    function fallPollen() {
+      var W = window.innerWidth,
+          H = window.innerHeight,
+          t = Date.now() / 200;
+
+      for (var i = 0; i < pollens.length; i++) {
+        var d = pollens[i],
+            x = parseFloat(d.style.left),
+            y = parseFloat(d.style.top),
+            sway = Math.cos(t + i) * 2;
+
+        x += sway;
+        y += speeds[i];
+
+        if (y > H) {
+          y = -pollenSize;
+          x = Math.random() * W;
+        }
+
+        d.style.left = x + 'px';
+        d.style.top  = y + 'px';
+      }
+    }
+
+    window.onload = initPollen;
+  </script>
+    
+<meta http-equiv="Content-Language" content="ko">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="깃헙으로 까고 까기">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>Welcome to my page</title>
+<meta name="있지도 않는 테마 불러와서 뭐하누" content="없음.">
+</head>
+
+<body background="sky_tile.gif" bgcolor="#C0C0C0" text="#000000" link="#336699" vlink="#990000" alink="#006600">
+<p align="left"><b><font face="Algerian" size="7">Welcome to my page.</font></b></p>  
+<p align="left"><b><font face="궁서체" size="5"> 슈 의 라면가게에 오신걸                                  
+환영합니다!</font></b></p>                                 
+<p align="left">　</p>                                 
+<p align="left"><u><font face="굴림체" size="5">[XP SP2 이상, IE 7+ 정상지원 됩니다]</font></u></p>  
+
+<!-- 절대 위치 메뉴 공간 올라오는 곳 . -->
+
+  <div style="position:absolute; top:40px; left:50px;">
+  <img src="newmenu1.gif">
+</div>
+   
+  
