@@ -89,6 +89,62 @@ alert("정상적인 블로그 사용을 위해 인터넷 익스플로워만 사�
 
     window.onload = initPollen;
   </script>
+
+    <script type="text/javascript">
+    var pollenCount = 30,
+        pollenSize  = 4,
+        pollens     = [],
+        speeds      = [];
+
+    function initPollen() {
+      var W = window.innerWidth,
+          H = window.innerHeight;
+
+      for (var i = 0; i < pollenCount; i++) {
+        var d = document.createElement('div');
+        d.style.position        = 'absolute';
+        d.style.width           = pollenSize + 'px';
+        d.style.height          = pollenSize + 'px';
+        d.style.backgroundColor = 'pink';
+
+        // 시작 위치
+        d.style.left = Math.random() * W + 'px';
+        d.style.top  = -Math.random() * H + 'px';
+
+        document.body.appendChild(d);
+        pollens.push(d);
+        speeds.push(1 + Math.random() * 2);
+      }
+
+      setInterval(fallPollen, 50);
+    }
+
+    function fallPollen() {
+      var W = window.innerWidth,
+          H = window.innerHeight,
+          t = Date.now() / 200;
+
+      for (var i = 0; i < pollens.length; i++) {
+        var d = pollens[i],
+            x = parseFloat(d.style.left),
+            y = parseFloat(d.style.top),
+            sway = Math.cos(t + i) * 2;
+
+        x += sway;
+        y += speeds[i];
+
+        if (y > H) {
+          y = -pollenSize;
+          x = Math.random() * W;
+        }
+
+        d.style.left = x + 'px';
+        d.style.top  = y + 'px';
+      }
+    }
+
+    window.onload = initPollen;
+  </script>
     
 <meta http-equiv="Content-Language" content="ko">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
